@@ -1,0 +1,8 @@
+FastAPI
+uvicorn
+requests
+pydantic
+python-multipart
+sqlite3
+openai
+whisper
