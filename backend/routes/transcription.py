@@ -19,3 +19,9 @@ async def transcribe(file: UploadFile = File(...)):
         return {"soap_note": soap_note}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/upload/")
+async def upload_file(file: UploadFile = File(...)):
+    with open(f"uploaded_files/{file.filename}", "wb") as f:
+        f.write(await file.read())
+    return {"filename": file.filename}

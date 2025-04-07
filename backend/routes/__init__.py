@@ -1,0 +1,1 @@
+{"message": "Welcome to the AI SOAP Notes API"}
