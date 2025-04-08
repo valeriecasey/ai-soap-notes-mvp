@@ -68,6 +68,32 @@ ai-soap-notes-mvp
 2. The application will process the audio and generate SOAP notes.
 3. View the formatted SOAP notes in the application.
 
+## TODO
+
+### Backend
+- [ ] Test the `/transcribe` endpoint with various audio files to ensure accurate transcription and SOAP note formatting.
+- [ ] Add error handling for cases where the OpenAI API fails or returns incomplete data.
+- [ ] Implement logging for debugging and monitoring API usage.
+- [ ] Optimize the `format_to_soap` function to handle edge cases in transcription text.
+- [ ] Add unit tests for `speech_to_text.py` and `soap_formatter.py`.
+
+### Frontend
+- [ ] Set up the React frontend in the `frontend` directory.
+- [ ] Create a file upload form to interact with the `/upload/` or `/transcribe` endpoints.
+- [ ] Display the generated SOAP notes in a user-friendly format.
+- [ ] Add error messages for invalid file uploads or API failures.
+- [ ] Style the frontend using Tailwind CSS or another CSS framework.
+
+### Deployment
+- [ ] Set up a free-tier hosting service (e.g., Railway.app, Render, or Fly.io) for the backend.
+- [ ] Deploy the React frontend to a hosting service like Vercel or Netlify.
+- [ ] Configure environment variables securely for production (e.g., OpenAI API key).
+
+### General
+- [ ] Write additional documentation for setting up and running the project.
+- [ ] Add API usage examples to the `README.md`.
+- [ ] Collect feedback from test users and refine the application based on their input.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.

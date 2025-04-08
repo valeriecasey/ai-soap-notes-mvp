@@ -1,4 +1,9 @@
 import openai
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 def format_to_soap(transcription: str) -> dict:
     """
@@ -10,19 +15,17 @@ def format_to_soap(transcription: str) -> dict:
     Returns:
         dict: A dictionary containing the SOAP notes.
     """
-    prompt = f"""
-    Format the following transcription into SOAP notes:
-    Transcription: {transcription}
-
-    Return the SOAP notes in this structure:
-    - Subjective:
-    - Objective:
-    - Assessment:
-    - Plan:
-    """
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=500
-    )
-    return response["choices"][0]["text"].strip()
+    try:
+        logger.debug(f"Formatting transcription to SOAP: {transcription}")
+        # Example SOAP note formatting logic
+        soap_note = {
+            "Subjective": transcription[:50],  # Placeholder logic
+            "Objective": transcription[50:100],  # Placeholder logic
+            "Assessment": transcription[100:150],  # Placeholder logic
+            "Plan": transcription[150:]  # Placeholder logic
+        }
+        logger.debug(f"Generated SOAP note: {soap_note}")
+        return soap_note
+    except Exception as e:
+        logger.error(f"Error in format_to_soap: {e}")
+        raise Exception("Failed to format transcription into SOAP notes.")
