@@ -1,9 +1,9 @@
-from sqlalchemy import create_engine, Column, Integer, String, Text
+from sqlalchemy import create_engine, Column, Integer, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Define the database URL
-DATABASE_URL = "sqlite:///./notes.db"
+DATABASE_URL = "sqlite:///./temp1.db"  # Use the new database file
 
 # Create a new SQLAlchemy engine instance
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
@@ -35,3 +35,6 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# Initialize the database
+init_db()

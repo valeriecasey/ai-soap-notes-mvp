@@ -13,7 +13,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 async def transcribe_audio(file: UploadFile) -> str:
     """
-    Transcribe audio file to text using Whisper API (older version for openai==0.28.0).
+    Transcribe audio file to text using OpenAI's Whisper API (newer version for openai>=1.0.0).
     
     Args:
         file (UploadFile): The audio file to be transcribed.
@@ -28,9 +28,12 @@ async def transcribe_audio(file: UploadFile) -> str:
             temp_file.write(await file.read())
         logger.info(f"File saved temporarily at: {temp_file_path}")
 
-        # Transcribe the audio file using OpenAI's older API
+        # Transcribe the audio file using OpenAI's Whisper API
         with open(temp_file_path, "rb") as audio_file:
-            response = openai.Audio.transcribe("whisper-1", audio_file)
+            response = openai.Audio.transcribe(
+                model="whisper-1",  # Specify the Whisper model
+                file=audio_file
+            )
         logger.debug(f"OpenAI transcription response: {response}")
 
         # Remove the temporary file
@@ -38,8 +41,6 @@ async def transcribe_audio(file: UploadFile) -> str:
         logger.info(f"Temporary file removed: {temp_file_path}")
 
         return response["text"]
-    except openai.error.OpenAIError as e:
-        logger.error(f"OpenAI API error: {e}")
-        if "quota" in str(e).lower():
-            raise Exception("OpenAI API quota exceeded. Please check your plan and billing details.")
+    except Exception as e:
+        logger.error(f"Error during transcription: {e}")
         raise Exception("Failed to transcribe audio file.")
