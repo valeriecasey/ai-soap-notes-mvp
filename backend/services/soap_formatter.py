@@ -24,10 +24,14 @@ def format_to_soap(transcription: str) -> dict:
     try:
         # Define the prompt for SOAP note formatting
         prompt = f"""
-        Convert the following text into a SOAP note format:
-        
-        Text: "{transcription}"
-        
+        You are a helpful assistant that formats transcribed conversations of veterinary visits into SOAP notes.
+        These conversations involve a traveling veterinary technician visiting a pet owner's home, inspecting the pet, 
+        discussing observations with the owner, and providing an analysis and plan for the pet's care.
+
+        Convert the following transcription into a SOAP note format. Ensure the "Plan" section is included if mentioned.
+
+        Transcription: "{transcription}"
+
         Format the response as:
         Subjective: ...
         Objective: ...
@@ -39,7 +43,7 @@ def format_to_soap(transcription: str) -> dict:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",  # Use "gpt-4" if available
             messages=[
-                {"role": "system", "content": "You are a helpful assistant that formats text into SOAP notes."},
+                {"role": "system", "content": "You are a helpful assistant that formats veterinary visit transcriptions into SOAP notes."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.7
