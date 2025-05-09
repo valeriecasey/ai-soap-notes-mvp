@@ -19,8 +19,7 @@ ai-soap-notes-mvp
 │   │   └── db_setup.py        # Database setup and connection logic
 │   └── requirements.txt       # Python dependencies for the backend
 ├── frontend
-│   ├── public
-│   │   └── index.html         # Main HTML file for the frontend application (optional, not used in this version)
+│   └── index.html             # Main HTML file for the frontend application
 └── README.md                   # Documentation for the project
 ```
 
@@ -68,23 +67,30 @@ ai-soap-notes-mvp
    uvicorn app:app --reload
    ```
 
-   The backend will start, and you can access the Swagger UI at:
+   The backend will start, and you can access the application at:
    ```
-   http://127.0.0.1:8000/docs
+   http://127.0.0.1:8000/
    ```
 
 ---
 
 ### Usage
 
-1. **Open the Swagger UI**:
-   Navigate to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) in your browser.
+1. **Open the Application**:
+   Navigate to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser.
 
-2. **Use the `/api/transcribe` endpoint**:
-   - Click **Try it out**.
-   - Upload an `.mp3` or `.wav` file.
-   - Click **Execute**.
+2. **Upload an Audio File**:
+   - Click the "Browse" button to select an `.mp3` or `.wav` file.
+   - Click the "Upload Audio File" button to process the file.
 
+3. **View Results**:
+   - The transcription will appear in the first text box.
+   - The SOAP-formatted notes will appear in the second text box.
+
+4. **Download Results**:
+   - Use the "Download Transcription" and "Download SOAP Format" links to save the results as `.txt` files.
+
+---
 
 ### Notes
 
@@ -95,18 +101,9 @@ ai-soap-notes-mvp
 
 ## TODO
 
-### Backend
-- [ ] Add error handling for cases where the OpenAI API fails or returns incomplete data.
-- [ ] Optimize the `format_to_soap` function to handle edge cases in transcription text.
-- [ ] Add unit tests for `speech_to_text.py` and `soap_formatter.py`.
-
-### Frontend
-- [ ] Create a working frontend to streamline the system and improve user experience.
-
 ### Deployment
-- [ ] Make the project accessible online (e.g., deploy the backend and frontend to a cloud hosting service).
-- [ ] Replace SQLite with Firebase for a more scalable database solution.
-- [ ] Create a hosted website or platform to run the frontend.
+- [ ] Replace the local SQLite database with an online database for scalability and ease of use.
+- [ ] Allow other devices to access the application via a public URL.
 
 ---
 

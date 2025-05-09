@@ -42,7 +42,10 @@ async def transcribe(file: UploadFile = File(...), db: Session = Depends(get_db)
         db.refresh(db_note)
         logger.info(f"SOAP note saved to database with ID: {db_note.id}")
         
-        return {"soap_note": soap_note}
+        return {
+            "transcription": transcription,  # Raw transcription text
+            "soap_note": soap_note           # SOAP-formatted notes
+        }
     except Exception as e:
         logger.error(f"Error in /transcribe endpoint: {e}")
         raise HTTPException(status_code=500, detail="An error occurred while processing the file.")
@@ -53,7 +56,6 @@ async def upload_file(file: UploadFile = File(...)):
         f.write(await file.read())
     return {"filename": file.filename}
 
-# The JavaScript code has been removed. Place it in a separate `.js` file.
 
 from fastapi import FastAPI
 from routes.transcription import router as transcription_router

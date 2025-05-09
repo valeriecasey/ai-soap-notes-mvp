@@ -2,6 +2,8 @@ import sys
 import os
 import logging
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from routes.transcription import router as transcription_router
 from database.db_setup import init_db
 
@@ -18,10 +20,13 @@ app = FastAPI()
 # Initialize the database
 init_db()
 
-# Health check endpoint
+# Serve the `frontend` folder as static files
+app.mount("/static", StaticFiles(directory="../frontend"), name="static")
+
+# Serve the `index.html` file at the root URL
 @app.get("/")
-async def health_check():
-    return {"status": "healthy"}
+async def serve_index():
+    return FileResponse(os.path.join("../frontend", "index.html"))
 
 # Include the transcription router
 app.include_router(transcription_router, prefix="/api")
