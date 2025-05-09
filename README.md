@@ -1,6 +1,6 @@
-# AI-Powered Transcription for SOAP Notes
+# Transcription for SOAP Notes
 
-This project is an AI-powered application that transcribes veterinarian-patient conversations into structured SOAP notes, minimizing manual documentation for mobile veterinary practitioners.
+This project is an application that transcribes veterinarian-patient conversations into structured SOAP notes, minimizing manual documentation.
 
 ## Project Structure
 
