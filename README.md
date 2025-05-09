@@ -96,6 +96,7 @@ ai-soap-notes-mvp
 
 - **Virtual Environment**: Always activate the virtual environment (`.venv`) before running the backend to ensure the correct dependencies are used.
 - **File Formats**: The application currently supports `.mp3` and `.wav` files for transcription.
+- **OpenAI Version**: When running the application, OpenAI 0.28.0 is used. If the transcription fails, please check the OpenAI API version and update it if necessary.
 
 ---
 
